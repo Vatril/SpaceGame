@@ -33,5 +33,18 @@ def latest(data):
     return jsonify(ship)
 
 
+@app.route("/state")
+def state():
+    return jsonify({
+        "p1":
+            {
+                "x": 100,
+                "y": 50,
+                "angle": .58
+            }
+
+    })
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=3001)

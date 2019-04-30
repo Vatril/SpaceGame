@@ -33,6 +33,16 @@ def latest(data):
     return jsonify(ship)
 
 
+@app.route('/login', methods=["POST"])
+def login():
+    print(request.form["name"])
+    print(request.form["color"])
+    return jsonify({
+        "success":True,
+        "id":"some_uuid"
+    })
+
+
 @app.route("/state")
 def state():
     return jsonify({

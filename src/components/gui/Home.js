@@ -32,7 +32,7 @@ export default class Home extends Component {
                 data
             ).then(res => {
                 if(res.data.success){
-                    
+                    this.props.onLogin(res.data.id)
                 }
             })
         }

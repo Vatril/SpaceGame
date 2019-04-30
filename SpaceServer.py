@@ -36,12 +36,23 @@ def latest(data):
 @app.route("/state")
 def state():
     return jsonify({
-           "ships":[{
-               "name": "abc",
-                "x": 100,
-                "y": 50,
-                "angle": .58
-            }]
+        "shots": 3,
+        "supermeter": 2.7,
+        "thrust": 140,
+        "ships": [{
+            "name": "abc",
+            "color": "#FF00FF",
+            "x": 100,
+            "y": 50,
+            "angle": 0
+        },
+        {
+            "name": "huhu",
+            "color": "#00FF00",
+            "x": 100,
+            "y": 50,
+            "angle": 3.1415
+        }]
 
     })
 

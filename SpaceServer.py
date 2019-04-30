@@ -37,7 +37,7 @@ def latest(data):
 def state():
     return jsonify({
            "ships":[{
-               "name": "abc",
+                "name": "abc",
                 "x": 100,
                 "y": 50,
                 "angle": .58

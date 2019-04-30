@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import GameCanvas from '../game/GameCanvas';
+import Home from './Home';
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-          <GameCanvas/>
+      <div id="wrapper">
+          <Home />
       </div>
     )
   }

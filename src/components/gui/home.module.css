@@ -1,0 +1,16 @@
+#registerwindow{
+    display: flex;
+    flex-direction: column;
+    border: .3vh solid rgb(167, 167, 167);
+    border-radius: 15px;
+    padding: 3vh;
+    align-items: center;
+}
+
+#registerwindow *{
+    margin-top: 1vh;
+}
+
+#registerwindow input, button{
+    width: 90%;
+}

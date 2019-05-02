@@ -36,6 +36,9 @@ class Ship:
 
         self.vel = self.vel.add(direction)
 
+    """
+    moves the ship and checks its position
+    """
     def move(self):
         dist_to_center = self.pos.dist(Ship.center)
         self.pos = self.pos.add(self.vel)
@@ -49,6 +52,9 @@ class Ship:
             if dist_to_center > 390:
                 self.setup()
 
+    """
+    calculate the thrust
+    """
     def thrust(self):
         if self.thrust_meter > 0:
             to_add = Vector2((math.cos(self.angle - math.pi/2.0) * 0.05),

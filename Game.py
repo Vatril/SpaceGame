@@ -1,9 +1,14 @@
 from Ships import Ship
 from Bullets import Bullet
 
+
 class Game:
-    ships = Ship[]
-    bullets = Bullet[]
+    ships = []
+    bullets = []
 
     def update(self):
-        pass
+        for aShip in Game.ships:
+            aShip.setup()
+            aShip.update()
+            aShip.move()
+

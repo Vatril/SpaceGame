@@ -1,5 +1,4 @@
-from Ships import Ship
-from Bullets import Bullet
+from game_logic.Ships import Ship
 from uuid import uuid4
 
 

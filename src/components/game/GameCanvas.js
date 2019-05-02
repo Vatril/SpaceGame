@@ -7,6 +7,7 @@ export default class GameCanvas extends Component {
         super(props)
 
         this.key = 0
+        this.interval = 0
 
         this.state = {
 
@@ -18,6 +19,13 @@ export default class GameCanvas extends Component {
         this.context2D.fillStyle = 'black'
         this.context2D.fillRect(0, 0, 800, 800)
         this.drawShips()
+        this.interval = setInterval(() => {
+            this.drawShips()
+        }, 100)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.interval)
     }
 
     drawShips(){

@@ -1,21 +1,22 @@
-from Ships import Ship
-from Bullets import Bullet
+from game_logic.Ships import Ship
+from game_logic.Bullets import Bullet
 from uuid import uuid4
+from time import time
 
 
 class Game:
     ships = []
     bullets = []
 
+    last_update = 0
+
     @staticmethod
     def update():
         for aShip in Game.ships:
-            aShip.setup()
             aShip.update()
             aShip.move()
 
         for aBullet in Game.bullets:
-            aBullet.setup()
             aBullet.update()
             aBullet.move()
 
@@ -25,5 +26,8 @@ class Game:
        return uuid
 
     def get(self):
-        self.update()
+        delta = (time() + 100) - Game.last_update
+        if delta > 0:
+            for i in range(0, i):
+                self.update()
         return Game.ships, Game.bullets

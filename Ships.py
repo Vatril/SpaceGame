@@ -5,7 +5,9 @@ import math
 class Ship:
     center = Vector2(400, 400)
 
-    def __init__(self, id):
+    def __init__(self, ship_id, name, color):
+        self.name = name
+        self.color = color
         self.pos = Vector2(0.0, 0.0)
         self.vel = Vector2(2.0, 0.5)
         self.velFactor = 1.0
@@ -14,7 +16,7 @@ class Ship:
         self.super_meter = 0
         self.thrust_meter = 150
         self.ammo_counter = 8
-        self.id = id
+        self.ship_id = ship_id
         self.score = 0
 
     def setup(self):

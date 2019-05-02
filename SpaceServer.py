@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from Bullets import Bullet
+from Ships import Ship
 
 app = Flask(__name__)
 
@@ -7,6 +9,9 @@ A_KEY = 1 << 1
 D_KEY = 1 << 2
 SPACE_KEY = 1 << 3
 V_KEY = 1 << 4
+
+bullets = []
+ships = []
 
 
 @app.route('/player/<data>')

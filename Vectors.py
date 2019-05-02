@@ -13,6 +13,9 @@ class Vector2:
     def sub(self, other):
         return Vector2(self.x - other.x, self.y - other.y)
 
+    def sub(self, factor):
+        return Vector2(self.x * factor, self.y * factor)
+
     def normalize(self):
         abs = math.sqrt(math.pow(self.x, 2) + math.pow(self.y, 2))
         return Vector2(self.x / abs, self.y / abs)

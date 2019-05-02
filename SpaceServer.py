@@ -1,7 +1,5 @@
 from flask import Flask, jsonify, request
-from Bullets import Bullet
-from Ships import Ship
-from Game import Game
+from game_logic.Game import Game
 
 app = Flask(__name__)
 

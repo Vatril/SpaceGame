@@ -26,6 +26,8 @@ class Game:
        return uuid
 
     def get(self):
+        if Game.last_update == 0:
+            Game.last_update = time()
         delta = (time() + 100) - Game.last_update
         if delta > 0:
             for i in range(0, int(delta/100)):

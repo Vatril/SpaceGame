@@ -13,7 +13,7 @@ class Vector2:
     def sub(self, other):
         return Vector2(self.x - other.x, self.y - other.y)
 
-    def sub(self, factor):
+    def mult(self, factor):
         return Vector2(self.x * factor, self.y * factor)
 
     def normalize(self):

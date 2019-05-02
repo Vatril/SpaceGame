@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from Bullets import Bullet
 from Ships import Ship
+from Game import Game
 
 app = Flask(__name__)
 
@@ -10,8 +11,7 @@ D_KEY = 1 << 2
 SPACE_KEY = 1 << 3
 V_KEY = 1 << 4
 
-bullets = []
-ships = []
+game = Game()
 
 
 @app.route('/player/<data>')
@@ -40,11 +40,9 @@ def latest(data):
 
 @app.route('/login', methods=["POST"])
 def login():
-    print(request.form["name"])
-    print(request.form["color"])
     return jsonify({
-        "success":True,
-        "id":"some_uuid"
+        "success": True,
+        "id": game.add(request.form["name"], request.form["color"])
     })
 
 

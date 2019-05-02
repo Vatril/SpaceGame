@@ -5,6 +5,9 @@ import math
 class Ship:
     center = Vector2(400, 400)
 
+    """
+    constructor for ship object
+    """
     def __init__(self, ship_id, name, color):
         self.name = name
         self.color = color
@@ -19,6 +22,9 @@ class Ship:
         self.ship_id = ship_id
         self.score = 0
 
+    """
+    reset func for ship attributes
+    """
     def setup(self):
         self.pos = Vector2(0.0, 0.0)
         self.vel = Vector2(2.0, 0.5)

@@ -13,7 +13,7 @@ class Bullet:
         bullets.remove(self)
 
     # collision method
-    def checkHit(self, ships, bullets):
+    def check_hit(self, ships, bullets):
         # check if we hit a ship and if the ship is not ours
         for aShip in ships:
             if (self.pos.dist(aShip.pos) < 20) and (self.id != aShip.id):

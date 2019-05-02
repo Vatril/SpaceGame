@@ -9,6 +9,8 @@ env/
 .vscode/
 .idea/
 
+__pycache__/
+
 # Runtime data
 pids
 *.pid

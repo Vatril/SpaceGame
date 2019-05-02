@@ -17,12 +17,7 @@ game = Game()
 @app.route('/player/<data>')
 def latest(data):
     data = int(data)
-    ship = {self.name = name
-        self.color = color
-        self.pos = Vector2(0.0, 0.0)
-        self.vel = Vector2(2.0, 0.5)
-        self.velFactor = 1.0
-        self.angle = 0.0
+    ship = {
         "w": True if (data & W_KEY) else False,
         "a": True if (data & A_KEY) else False,
         "d": True if (data & D_KEY) else False,

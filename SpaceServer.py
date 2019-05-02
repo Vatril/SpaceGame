@@ -1,4 +1,7 @@
 from flask import Flask, jsonify, request
+from Bullets import Bullet
+from Ships import Ship
+from Game import Game
 
 app = Flask(__name__)
 
@@ -8,14 +11,18 @@ D_KEY = 1 << 2
 SPACE_KEY = 1 << 3
 V_KEY = 1 << 4
 
-bullets = []
-ships = []
+game = Game()
 
 
 @app.route('/player/<data>')
 def latest(data):
     data = int(data)
-    ship = {
+    ship = {self.name = name
+        self.color = color
+        self.pos = Vector2(0.0, 0.0)
+        self.vel = Vector2(2.0, 0.5)
+        self.velFactor = 1.0
+        self.angle = 0.0
         "w": True if (data & W_KEY) else False,
         "a": True if (data & A_KEY) else False,
         "d": True if (data & D_KEY) else False,
@@ -38,36 +45,30 @@ def latest(data):
 
 @app.route('/login', methods=["POST"])
 def login():
-    print(request.form["name"])
-    print(request.form["color"])
     return jsonify({
-        "success":True,
-        "id":"some_uuid"
+        "success": True,
+        "id": game.add(request.form["name"], request.form["color"])
     })
 
 
 @app.route("/state")
 def state():
+    ships, bullets = game.get()
+
     return jsonify({
         "shots": 3,
         "supermeter": 2.7,
         "thrust": 140,
-        "ships": [{
-            "name": "abc",
-            "color": "#FF00FF",
-            "x": 100,
-            "y": 50,
-            "angle": 0
-        },
-        {
-            "name": "huhu",
-            "color": "#00FF00",
-            "x": 100,
-            "y": 50,
-            "angle": 3.1415
-        }]
-
-
+        "ships":
+            [{
+                "x": ship.pos.x,
+                "y": ship.pos.y,
+                "angle": ship.angle,
+                "color": ship.color,
+                "name": ship.name
+                } for ship in ships]
+        ,
+        "bullets" : None
     })
 
 

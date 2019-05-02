@@ -30,6 +30,8 @@ export default class GameCanvas extends Component {
 
     drawShips(){
         Axios.get("/state").then(res => {
+            this.context2D.fillStyle = 'black'
+            this.context2D.fillRect(0, 0, 800, 800)
             this.context2D.font = "20pt sans"
             for (const ship of res.data.ships) {
                 this.context2D.translate(ship.x, ship.y)

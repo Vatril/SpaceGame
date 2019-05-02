@@ -1,7 +1,3 @@
-from Ships import Ship
-from Bullets import Bullet
-
-
 class Game:
     ships = []
     bullets = []

@@ -1,4 +1,4 @@
-from Vectors import Vector2
+from game_logic.Vectors import Vector2
 
 
 class Bullet:

@@ -1,6 +1,4 @@
 from flask import Flask, jsonify, request
-from Bullets import Bullet
-from Ships import Ship
 
 app = Flask(__name__)
 

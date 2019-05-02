@@ -30,4 +30,5 @@ class Game:
         if delta > 0:
             for i in range(0, i):
                 self.update()
+            Game.last_update = time()
         return Game.ships, Game.bullets

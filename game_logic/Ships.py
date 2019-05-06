@@ -56,7 +56,7 @@ class Ship:
         if (dist_to_center > 300) and (dist_to_center < 390):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
 
-        if dist_to_center > 390:
+        if dist_to_center > 600:
             self.setup()
 
     """

@@ -11,7 +11,7 @@ class Ship:
     def __init__(self, ship_id, name, color):
         self.name = name
         self.color = color
-        self.pos = Vector2(0.0, 0.0)
+        self.pos = Vector2(80.0, 60.0)
         self.vel = Vector2(2.0, 0.5)
         self.velFactor = 1.0
         self.angle = 0.0
@@ -26,7 +26,7 @@ class Ship:
     reset func for ship attributes
     """
     def setup(self):
-        self.pos = Vector2(0.0, 0.0)
+        self.pos = Vector2(80.0, 60.0)
         self.vel = Vector2(2.0, 0.5)
         self.velFactor = 1.0
         self.super_meter = 0

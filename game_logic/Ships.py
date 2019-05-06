@@ -41,7 +41,6 @@ class Ship:
         direction = direction.mult(1000 / (d * d))
 
         self.vel = self.vel.add(direction)
-        print(self.pos)
 
     """
     moves the ship and checks its position

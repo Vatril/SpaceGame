@@ -41,6 +41,7 @@ class Ship:
         direction = direction.mult(1000 / (d * d))
 
         self.vel = self.vel.add(direction)
+        print(self.pos)
 
     """
     moves the ship and checks its position
@@ -55,8 +56,8 @@ class Ship:
         if (dist_to_center > 300) and (dist_to_center < 390):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
 
-            if dist_to_center > 390:
-                self.setup()
+        if dist_to_center > 390:
+            self.setup()
 
     """
     calculate the thrust

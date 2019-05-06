@@ -21,7 +21,7 @@ export default class GameCanvas extends Component {
         this.drawShips()
         this.interval = setInterval(() => {
             this.drawShips()
-        }, 100)
+        }, 1000)
     }
 
     componentWillUnmount(){

@@ -14,9 +14,11 @@ game = Game()
 
 app.secret_key = secrets.token_bytes(8)
 
+
 @app.route('/')
 def home():
     return render_template("index.html")
+
 
 @app.route('/player/<data>')
 def latest(data):

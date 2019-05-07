@@ -4,6 +4,11 @@ import math
 
 class Ship:
     center = Vector2(400, 400)
+    W_KEY = 1 << 0
+    A_KEY = 1 << 1
+    D_KEY = 1 << 2
+    SPACE_KEY = 1 << 3
+    V_KEY = 1 << 4
 
     """
     constructor for ship object
@@ -22,6 +27,8 @@ class Ship:
         self.ship_id = ship_id
         self.score = 0
 
+        self.last_key_presses = 0
+
     """
     reset func for ship attributes
     """
@@ -34,13 +41,23 @@ class Ship:
         self.ammo_counter = 4
         self.score = 0
 
-    def update(self):
+    def update(self, key_presses):
+        changes = key_presses ^ self.last_key_presses
+        if  changes & Ship.W_KEY:
+            pass
+
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Ship.center)
         direction = direction.mult(1000 / (d * d))
 
         self.vel = self.vel.add(direction)
+
+    def rotate(self, left_right):
+        if left_right == -1:
+            self.angle -= 0.1
+        else:
+            self.angle += 0.1
 
     """
     moves the ship and checks its position
@@ -70,4 +87,8 @@ class Ship:
 
     def shoot(self):
         if self.ammo_counter:
+            pass
+
+    def super_shoot(self):
+        if self.super_meter == 4:
             pass

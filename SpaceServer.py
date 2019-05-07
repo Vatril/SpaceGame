@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
 from game_logic.Game import Game
 
 app = Flask(__name__)
@@ -33,11 +33,18 @@ def latest(data):
     if ship["v"]:
         print("V pressed")
 
+    for aShip in game.ships:
+        if aShip.id == session['user_id']:
+            aShip.update(data)
+
     return jsonify(ship)
 
 
 @app.route('/login', methods=["POST"])
 def login():
+    session.clear()
+    session['key_presses'] = 0
+    session['user_id'] = game.add(request.form["name"], request.form["color"])
     return jsonify({
         "success": True,
         "id": game.add(request.form["name"], request.form["color"])
@@ -59,9 +66,9 @@ def state():
                 "angle": ship.angle,
                 "color": ship.color,
                 "name": ship.name
-                } for ship in ships]
+            } for ship in ships]
         ,
-        "bullets" : None
+        "bullets": None
     })
 
 

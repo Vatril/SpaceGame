@@ -27,8 +27,7 @@ class Ship:
         self.ship_id = ship_id
         self.score = 0
 
-        self.last_key_presses = 0
-
+        self.key_presses = 0
     """
     reset func for ship attributes
     """
@@ -41,10 +40,17 @@ class Ship:
         self.ammo_counter = 4
         self.score = 0
 
-    def update(self, key_presses):
-        changes = key_presses ^ self.last_key_presses
-        if  changes & Ship.W_KEY:
-            pass
+    def update(self):
+        if self.key_presses & Ship.W_KEY:
+            self.thrust()
+        if self.key_presses & Ship.A_KEY:
+            self.rotate(-1)
+        if self.key_presses & Ship.D_KEY:
+            self.rotate(1)
+        if self.key_presses & Ship.SPACE_KEY:
+            self.shoot()
+        if self.key_presses & Ship.V_KEY:
+            self.super_shoot()
 
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
@@ -54,11 +60,7 @@ class Ship:
         self.vel = self.vel.add(direction)
 
     def rotate(self, left_right):
-        if left_right == -1:
-            self.angle -= 0.1
-        else:
-            self.angle += 0.1
-
+        self.angle += left_right * 0.1
     """
     moves the ship and checks its position
     """

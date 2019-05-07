@@ -20,6 +20,13 @@ def home():
     return render_template("index.html")
 
 
+@app.route('/game')
+def gameview():
+    if 'user_id' in session:
+        return render_template("game.html")
+    return redirect("/")
+
+
 @app.route('/player/<data>')
 def latest(data):
     data = int(data)

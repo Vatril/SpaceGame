@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request, session, render_template, redirect
 from game_logic.Game import Game
+import secrets
 
 app = Flask(__name__)
 
@@ -11,6 +12,11 @@ V_KEY = 1 << 4
 
 game = Game()
 
+app.secret_key = secrets.token_bytes(8)
+
+@app.route('/')
+def home():
+    return render_template("index.html")
 
 @app.route('/player/<data>')
 def latest(data):
@@ -45,10 +51,7 @@ def login():
     session.clear()
     session['key_presses'] = 0
     session['user_id'] = game.add(request.form["name"], request.form["color"])
-    return jsonify({
-        "success": True,
-        "id": game.add(request.form["name"], request.form["color"])
-    })
+    return redirect("/game")
 
 
 @app.route("/state")
@@ -73,4 +76,4 @@ def state():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=3001)
+    app.run(host='0.0.0.0', debug=True, port=3000)

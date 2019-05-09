@@ -72,10 +72,17 @@ def login():
 def state():
     ships, bullets = game.get()
 
+    for aShip in ships:
+        if aShip.ship_id == session['user_id']:
+            this_ship = aShip
+
     return jsonify({
-        "shots": 3,
-        "supermeter": 2.7,
-        "thrust": 140,
+        "gui":
+            {
+                "shots": this_ship.ammo_counter,
+                "supermeter": this_ship.super_meter,
+                "thrust": this_ship.thrust_meter,
+            },
         "ships":
             [{
                 "x": ship.pos.x,

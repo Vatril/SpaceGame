@@ -1,5 +1,6 @@
 let key = 0
 
+
 const startGame = () => {
 
     d3
@@ -21,9 +22,12 @@ const startGame = () => {
                 .data(res.data.ships)
 
             d3
-            .select("#thrust")
-            .datum(res.data.gui.thrust)
-            .attr("width", thrust => thrust)
+                .select("#thrust")
+                .datum(res.data.gui.thrust)
+                .transition(d3.transition()
+                    .ease(d3.easeLinear)
+                    .duration(100))
+                .attr("width", thrust => thrust)
 
             const g = groups.enter()
                 .append("g")
@@ -41,16 +45,14 @@ const startGame = () => {
                 .text(ship => ship.name)
 
             groups
-                .transition(
-                    d3.transition()
-                        .ease(d3.easeLinear)
-                        .duration(200)
-                )
+                .transition(d3.transition()
+                    .ease(d3.easeLinear)
+                    .duration(100))
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})
                  rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
 
         })
-    }, 200)
+    }, 100)
 }
 
 const keyToShift = key => {

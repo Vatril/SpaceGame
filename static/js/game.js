@@ -5,7 +5,8 @@ const startGame = () => {
     d3
         .select("body")
         .on("keydown", () => {
-            key |= 1 << keyToShift(d3.event.keyCode)
+            key |= 1 << keyToShift(d3.event.key)
+            console.log(key)
             sendUpdate()
         })
         .on("keyup", () => {

@@ -1,4 +1,17 @@
+let key = 0
+
 const startGame = () => {
+
+    d3
+        .select("body")
+        .on("keydown", () => {
+            key |= 1 << keyToShift(d3.event.keyCode)
+            sendUpdate()
+        })
+        .on("keyup", () => {
+            key &= ~(1 << keyToShift(d3.event.keyCode))
+            sendUpdate()
+        })
 
     setInterval(() => {
         axios.get("/state").then(res => {
@@ -48,4 +61,20 @@ const startGame = () => {
 
         })
     }, 200)
+}
+
+const keyToShift = key => {
+    switch (key) {
+        case 'w': return 0
+        case 'a': return 1
+        case 'd': return 2
+        case ' ': return 3
+        case 'v': return 4
+        default: return 0xFFFFFF
+    }
+}
+
+
+const sendUpdate = () => {
+    axios.get("/player/" + key)
 }

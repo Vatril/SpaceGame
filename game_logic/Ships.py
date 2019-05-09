@@ -60,7 +60,7 @@ class Ship:
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Ship.center)
-        direction = direction.mult(100 / (d * d))
+        direction = direction.mult(60 / (d * d))
 
         self.vel = self.vel.add(direction)
 

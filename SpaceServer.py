@@ -72,9 +72,14 @@ def login():
 def state():
     ships, bullets = game.get()
 
+    this_ship = None
+
     for aShip in ships:
         if aShip.ship_id == session['user_id']:
             this_ship = aShip
+
+    if this_ship is None:
+        return jsonify({"error": "no ship"})
 
     return jsonify({
         "gui":

@@ -48,8 +48,8 @@ class Ship:
     """
 
     def update(self):
+        self.thrust_meter += 1
         # update the keystrokes
-        print(self.key_presses)
         if self.key_presses & Ship.W_KEY:
             self.thrust()
         if self.key_presses & Ship.A_KEY:
@@ -102,11 +102,10 @@ class Ship:
 
     def thrust(self):
         if self.thrust_meter > 0:
-            to_add = Vector2((math.cos(self.angle - math.pi / 2.0) * 0.05),
-                             (math.sin(self.angle - math.pi / 2.0) * 0.05))
-            self.vel.add(to_add)
+            to_add = Vector2((math.cos(self.angle - math.pi / 2.0) * 0.01),
+                             (math.sin(self.angle - math.pi / 2.0) * 0.01))
+            self.vel = self.vel.add(to_add)
             self.thrust_meter -= 2
-            print("thrusting...")
 
     # normal shoot function
     def shoot(self):

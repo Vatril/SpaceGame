@@ -1,5 +1,6 @@
 from game_logic.Vectors import Vector2
-import game_logic.Game
+from game_logic.Bullets import Bullet
+import game_logic.Game as Game
 import math
 
 
@@ -50,7 +51,9 @@ class Ship:
     """
 
     def update(self):
-        self.thrust_meter += 1
+        if self.thrust_meter < 150:
+            self.thrust_meter += 1
+
         # update the keystrokes
         if self.key_presses & Ship.W_KEY:
             self.thrust()
@@ -107,7 +110,7 @@ class Ship:
             to_add = Vector2((math.cos(self.angle - math.pi / 2.0) * 0.01),
                              (math.sin(self.angle - math.pi / 2.0) * 0.01))
             self.vel = self.vel.add(to_add)
-            self.thrust_meter -= 2
+            self.thrust_meter -= 0.2
 
     # normal shoot function
     def shoot(self):

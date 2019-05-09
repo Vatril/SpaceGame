@@ -29,7 +29,7 @@ const startGame = () => {
             g
                 .append("path")
                 .attr("fill", ship => ship.color)
-                .attr("d", "M 5 0 L 10 10 L 0 10")
+                .attr("d", "M 20 0 L 40 40 L 0 40")
 
             g
                 .append("text")

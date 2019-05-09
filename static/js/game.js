@@ -20,7 +20,10 @@ const startGame = () => {
                 .selectAll("g")
                 .data(res.data.ships)
 
-
+            d3
+            .select("#thrust")
+            .datum(res.data.gui.thrust)
+            .attr("width", thrust => thrust)
 
             const g = groups.enter()
                 .append("g")

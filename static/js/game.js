@@ -20,11 +20,11 @@ const startGame = () => {
                 .select("circle")
                 .transition(
                     d3.transition()
-                .duration(500)
+                .duration(200)
                 )
                 .attr("cx", ship => ship.x)
                 .attr("cy", ship => ship.y)
 
         })
-    }, 500)
+    }, 200)
 }

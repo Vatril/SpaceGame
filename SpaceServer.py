@@ -50,7 +50,7 @@ def latest(data):
 
     for aShip in game.ships:
         if aShip.id == session['user_id']:
-            aShip.update(data)
+            aShip.key_presses = data
 
     return jsonify(ship)
 

@@ -17,7 +17,7 @@ class Ship:
         self.name = name
         self.color = color
         self.pos = Vector2(80.0, 60.0)
-        self.vel = Vector2(2.0, 0.5)
+        self.vel = Vector2(0.5, 0.1)
         self.velFactor = 1.0
         self.angle = 0.0
 
@@ -27,25 +27,36 @@ class Ship:
         self.ship_id = ship_id
         self.score = 0
 
-        self.last_key_presses = 0
-
+        self.key_presses = 0
     """
     reset func for ship attributes
     """
     def setup(self):
         self.pos = Vector2(80.0, 60.0)
-        self.vel = Vector2(2.0, 0.5)
+        self.vel = Vector2(0.5, 0.1)
         self.velFactor = 1.0
         self.super_meter = 0
         self.thrust_meter = 150
         self.ammo_counter = 4
         self.score = 0
 
-    def update(self, key_presses):
-        changes = key_presses ^ self.last_key_presses
-        if  changes & Ship.W_KEY:
-            pass
+    """
+    update the ship's position as well as the keystrokes
+    """
+    def update(self):
+        # update the keystrokes
+        if self.key_presses & Ship.W_KEY:
+            self.thrust()
+        if self.key_presses & Ship.A_KEY:
+            self.rotate(-1)
+        if self.key_presses & Ship.D_KEY:
+            self.rotate(1)
+        if self.key_presses & Ship.SPACE_KEY:
+            self.shoot()
+        if self.key_presses & Ship.V_KEY:
+            self.super_shoot()
 
+        # calculate the gravity
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Ship.center)
@@ -53,11 +64,11 @@ class Ship:
 
         self.vel = self.vel.add(direction)
 
+    """"
+    rotate the ship
+    """
     def rotate(self, left_right):
-        if left_right == -1:
-            self.angle -= 0.1
-        else:
-            self.angle += 0.1
+        self.angle += left_right * 0.1
 
     """
     moves the ship and checks its position
@@ -66,12 +77,15 @@ class Ship:
         dist_to_center = self.pos.dist(Ship.center)
         self.pos = self.pos.add(self.vel)
 
+        # if the ship falls into the black hole, reset its position
         if dist_to_center < 20:
             self.setup()
 
+        # calculate how slow the ship should move as it moves further to the edge
         if (dist_to_center > 300) and (dist_to_center < 390):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
 
+        # if the ship is out of bounds, place it back to spawn
         if dist_to_center > 600:
             self.setup()
 
@@ -85,10 +99,12 @@ class Ship:
             self.vel.add(to_add)
             self.thrust_meter -= 2
 
+    # normal shoot function
     def shoot(self):
         if self.ammo_counter:
             pass
 
+    # super shoot function, activates after 4 hits
     def super_shoot(self):
         if self.super_meter == 4:
             pass

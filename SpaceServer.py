@@ -77,6 +77,7 @@ def state():
     for aShip in ships:
         if aShip.ship_id == session['user_id']:
             this_ship = aShip
+            break
 
     if this_ship is None:
         return jsonify({"error": "no ship"})

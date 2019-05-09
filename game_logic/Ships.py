@@ -1,5 +1,6 @@
 from game_logic.Vectors import Vector2
-import game_logic.Game
+from game_logic.Bullets import Bullet
+import game_logic.Game as Game
 import math
 
 

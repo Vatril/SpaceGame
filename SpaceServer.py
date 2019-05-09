@@ -72,7 +72,7 @@ def login():
 def state():
     ships, bullets = game.get()
 
-    for aShip in ships:
+    for aShip in game.ships:
         if aShip.ship_id == session['user_id']:
             this_ship = aShip
 

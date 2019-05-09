@@ -28,7 +28,7 @@ class Ship:
         self.score = 0
 
         self.key_presses = 0
-        
+
     """
     reset func for ship attributes
     """

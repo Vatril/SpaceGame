@@ -1,8 +1,13 @@
 from flask import Flask, jsonify, request, session, render_template, redirect
 from game_logic.Game import Game
 import secrets
+import logging
 
 app = Flask(__name__)
+
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 W_KEY = 1 << 0
 A_KEY = 1 << 1

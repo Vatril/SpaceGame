@@ -17,7 +17,7 @@ class Ship:
         self.name = name
         self.color = color
         self.pos = Vector2(80.0, 60.0)
-        self.vel = Vector2(2.0, 0.5)
+        self.vel = Vector2(0.5, 0.1)
         self.velFactor = 1.0
         self.angle = 0.0
 
@@ -33,7 +33,7 @@ class Ship:
     """
     def setup(self):
         self.pos = Vector2(80.0, 60.0)
-        self.vel = Vector2(2.0, 0.5)
+        self.vel = Vector2(0.5, 0.1)
         self.velFactor = 1.0
         self.super_meter = 0
         self.thrust_meter = 150

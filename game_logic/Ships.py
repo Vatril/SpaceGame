@@ -17,7 +17,7 @@ class Ship:
         self.name = name
         self.color = color
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(1.25, 0.25)
+        self.vel = Vector2(0.5, 0.25)
         self.velFactor = 1.0
         self.angle = 0.0
 
@@ -28,12 +28,13 @@ class Ship:
         self.score = 0
 
         self.key_presses = 0
+        
     """
     reset func for ship attributes
     """
     def setup(self):
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(1.25, 0.25)
+        self.vel = Vector2(0.5, 0.25)
         self.velFactor = 1.0
         self.super_meter = 0
         self.thrust_meter = 150

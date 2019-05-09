@@ -1,11 +1,13 @@
 from game_logic.Vectors import Vector2
+import math
 
 
 class Bullet:
 
-    def __init__(self, id):
-        self.pos = Vector2(0.0, 0.0)
-        self.vel = Vector2(0.0, 0.0)
+    def __init__(self, x, y, angle, id):
+        self.pos = Vector2(x, y)
+        self.vel = Vector2(math.cos(angle - math.pi/2) * 6,
+                           math.sin(angle - math.pi/2) * 6)
         self.id = id
 
     # remove the bullet from the array

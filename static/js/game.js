@@ -16,9 +16,10 @@ const startGame = () => {
     setInterval(() => {
         axios.get("/state").then(res => {
             const groups = d3
-                .select("#svg")
+                .select("#ships")
                 .selectAll("g")
                 .data(res.data.ships)
+
 
 
             const g = groups.enter()

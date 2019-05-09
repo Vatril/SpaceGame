@@ -52,6 +52,7 @@ class Ship:
     def update(self):
         if self.thrust_meter < 150:
             self.thrust_meter += 1
+            
         # update the keystrokes
         if self.key_presses & Ship.W_KEY:
             self.thrust()

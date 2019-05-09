@@ -1,8 +1,7 @@
 from game_logic.Vectors import Vector2
 from game_logic.Bullets import Bullet
-import game_logic.Game as Game
+# import game_logic.Game as Game
 import math
-
 
 
 class Ship:
@@ -25,6 +24,7 @@ class Ship:
         self.velFactor = 1.0
         self.angle = 0.0
 
+        self.thrust_pressed = False
         self.super_meter = 0
         self.thrust_meter = 150
         self.ammo_counter = 8
@@ -42,7 +42,7 @@ class Ship:
         self.vel = Vector2(0.5, 0.25)
         self.velFactor = 1.0
         self.super_meter = 0
-        self.thrust_meter = 150
+        # self.thrust_meter = 150
         self.ammo_counter = 4
         self.score = 0
 
@@ -51,8 +51,8 @@ class Ship:
     """
 
     def update(self):
-        if self.thrust_meter < 150:
-            self.thrust_meter += 1
+        if self.thrust_meter < 150 and not self.thrust_pressed:
+            self.thrust_meter += 0.2
 
         # update the keystrokes
         if self.key_presses & Ship.W_KEY:
@@ -107,15 +107,18 @@ class Ship:
 
     def thrust(self):
         if self.thrust_meter > 0:
+            self.thrust_pressed = True
             to_add = Vector2((math.cos(self.angle - math.pi / 2.0) * 0.01),
                              (math.sin(self.angle - math.pi / 2.0) * 0.01))
             self.vel = self.vel.add(to_add)
-            self.thrust_meter -= 0.2
+            self.thrust_meter -= 0.6
+        self.thrust_pressed = False
 
     # normal shoot function
     def shoot(self):
         if self.ammo_counter:
-            Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
+            # Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
+            pass
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

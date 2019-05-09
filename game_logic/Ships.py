@@ -13,6 +13,7 @@ class Ship:
     """
     constructor for ship object
     """
+
     def __init__(self, ship_id, name, color):
         self.name = name
         self.color = color
@@ -32,6 +33,7 @@ class Ship:
     """
     reset func for ship attributes
     """
+
     def setup(self):
         self.pos = Vector2(250.0, 200.0)
         self.vel = Vector2(0.5, 0.25)
@@ -44,8 +46,10 @@ class Ship:
     """
     update the ship's position as well as the keystrokes
     """
+
     def update(self):
         # update the keystrokes
+        print(self.key_presses)
         if self.key_presses & Ship.W_KEY:
             self.thrust()
         if self.key_presses & Ship.A_KEY:
@@ -68,12 +72,14 @@ class Ship:
     """"
     rotate the ship
     """
+
     def rotate(self, left_right):
         self.angle += left_right * 0.1
 
     """
     moves the ship and checks its position
     """
+
     def move(self):
         dist_to_center = self.pos.dist(Ship.center)
         self.pos = self.pos.add(self.vel)
@@ -93,12 +99,14 @@ class Ship:
     """
     calculate the thrust
     """
+
     def thrust(self):
         if self.thrust_meter > 0:
-            to_add = Vector2((math.cos(self.angle - math.pi/2.0) * 0.05),
-                            (math.sin(self.angle - math.pi/2.0) * 0.05))
+            to_add = Vector2((math.cos(self.angle - math.pi / 2.0) * 0.05),
+                             (math.sin(self.angle - math.pi / 2.0) * 0.05))
             self.vel.add(to_add)
             self.thrust_meter -= 2
+            print("thrusting...")
 
     # normal shoot function
     def shoot(self):

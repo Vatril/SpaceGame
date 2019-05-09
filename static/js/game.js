@@ -10,7 +10,7 @@ const startGame = () => {
             sendUpdate()
         })
         .on("keyup", () => {
-            key &= ~(1 << keyToShift(d3.event.keyCode))
+            key &= ~(1 << keyToShift(d3.event.key))
             sendUpdate()
         })
 

@@ -23,7 +23,8 @@ const startGame = () => {
 
             const g = groups.enter()
                 .append("g")
-                .attr("transform", ship => `translate(${ship.x}, ${ship.y})`)
+                .attr("transform", ship => `translate(${ship.x}, ${ship.y})
+                 rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
 
             g
                 .append("path")
@@ -41,7 +42,8 @@ const startGame = () => {
                         .ease(d3.easeLinear)
                         .duration(200)
                 )
-                .attr("transform", ship => `translate(${ship.x}, ${ship.y})`)
+                .attr("transform", ship => `translate(${ship.x}, ${ship.y})
+                 rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
 
         })
     }, 200)

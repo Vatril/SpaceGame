@@ -49,7 +49,7 @@ def latest(data):
         print("V pressed")
 
     for aShip in game.ships:
-        if aShip.id == session['user_id']:
+        if aShip.ship_id == session['user_id']:
             aShip.key_presses = data
 
     return jsonify(ship)

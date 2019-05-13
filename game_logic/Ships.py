@@ -120,7 +120,7 @@ class Ship:
     # normal shoot function
     def shoot(self):
         if self.ammo_counter:
-            pass
+            self.ammo_counter -= 1
             # Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
 
     # super shoot function, activates after 4 hits

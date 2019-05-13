@@ -73,7 +73,7 @@ class Ship:
         direction = direction.mult(60 / (d * d))
 
         self.vel = self.vel.add(direction)
-        self.vel = self.vel.mult(self.velFactor);
+        self.vel = self.vel.mult(self.velFactor)
 
     """"
     rotate the ship

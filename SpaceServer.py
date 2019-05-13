@@ -3,6 +3,7 @@ from game_logic.Game import Game
 import secrets
 import logging
 
+
 app = Flask(__name__)
 
 

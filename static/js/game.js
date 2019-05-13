@@ -34,6 +34,25 @@ const startGame = () => {
                 .datum(res.data.gui.supermeter)
                 .attr("r", d => d * 6)
 
+            d3
+                .select("#shots")
+                .datum(res.data.gui.shots)
+                .each(shots => {
+
+                    d3
+                        .select("#shots")
+                        .selectAll("circle")
+                        .remove()
+                    for (let i = 0; i < shots; i++) {
+                        d3
+                            .select("#shots")
+                            .append("circle")
+                            .attr("r", "6")
+                            .attr("cy", 15 + Math.floor(i/4) * 20)
+                            .attr("cx", i * 40 + 610 + (Math.floor(i/4) * -160))
+                    }
+                })
+
             const g = groups.enter()
                 .append("g")
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})

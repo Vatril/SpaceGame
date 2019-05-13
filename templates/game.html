@@ -9,10 +9,26 @@
 <body onload="startGame()">
     <svg id="svg" width="800" height="800">
         <g id="ships" />
+        <g id="metersbg" fill="gray">
+            <circle cx="550" cy="50" r="30" />
+            <rect x="595" y="45" height="30" width="160" />
+            <g>
+                <g>
+                    <circle r="8" cy="15" cx="610"></circle>
+                    <circle r="8" cy="15" cx="650"></circle>
+                    <circle r="8" cy="15" cx="690"></circle>
+                    <circle r="8" cy="15" cx="730"></circle>
+                    <circle r="8" cy="35" cx="610"></circle>
+                    <circle r="8" cy="35" cx="650"></circle>
+                    <circle r="8" cy="35" cx="690"></circle>
+                    <circle r="8" cy="35" cx="730"></circle>
+                </g>
+            </g>
+        </g>
         <g id="meters">
-            <circle cx="550" cy="50" id="supermeter"/>
-            <rect id="thrust" x="600" y="50" height="20" fill="black"/>
-            <g id="shots"/>
+            <circle cx="550" cy="50" id="supermeter" />
+            <rect id="thrust" x="600" y="50" height="20" fill="black" />
+            <g id="shots" />
         </g>
     </svg>
 </body>

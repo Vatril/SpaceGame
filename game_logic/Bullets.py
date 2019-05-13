@@ -4,6 +4,8 @@ import math
 
 class Bullet:
 
+    center = Vector2(400, 400)
+
     def __init__(self, x, y, angle, id):
         self.pos = Vector2(x, y)
         self.vel = Vector2(math.cos(angle - math.pi/2) * 6,
@@ -42,8 +44,21 @@ class Bullet:
                 self.remove(bullets)
 
     """
+    calculates the velocity and position
+    """
+
+    def update(self):
+        # calculate the gravity
+        direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
+        direction = direction.normalize()
+        d = self.pos.dist(Bullet.center)
+        direction = direction.mult(60 / (d * d))
+
+        self.vel = self.vel.add(direction)
+
+    """
     update func for bullets
     """
-    
+
     def move(self):
         self.pos = self.pos.add(self.vel)

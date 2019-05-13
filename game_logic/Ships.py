@@ -97,6 +97,8 @@ class Ship:
         # calculate how slow the ship should move as it moves further to the edge
         if (dist_to_center > 300) and (dist_to_center < 390):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
+        else:
+            self.velFactor = 1.0
 
         # if the ship is out of bounds, place it back to spawn
         if dist_to_center > 600:

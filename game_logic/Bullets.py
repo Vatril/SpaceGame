@@ -49,10 +49,10 @@ class Bullet:
 
     def update(self):
         # calculate the gravity
-        direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
+        direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(60 / (d * d))
+        direction = direction.mult(100 / (d * d))
 
         self.vel = self.vel.add(direction)
 

@@ -1,6 +1,6 @@
 from game_logic.Vectors import Vector2
 from game_logic.Bullets import Bullet
-from game_logic.Game import Game
+# import game_logic.Game as Game
 import math
 
 
@@ -118,7 +118,8 @@ class Ship:
     # normal shoot function
     def shoot(self):
         if self.ammo_counter:
-            Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
+            pass
+            # Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

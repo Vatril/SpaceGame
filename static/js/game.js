@@ -29,6 +29,11 @@ const startGame = () => {
                     .duration(100))
                 .attr("width", thrust => thrust)
 
+            d3
+                .select("#supermeter")
+                .datum(res.data.gui.supermeter)
+                .attr("r", d => d * 6)
+
             const g = groups.enter()
                 .append("g")
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})

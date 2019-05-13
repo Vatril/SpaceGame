@@ -10,11 +10,17 @@ class Bullet:
                            math.sin(angle - math.pi/2) * 6)
         self.id = id
 
-    # remove the bullet from the array
+    """
+    remove the bullet from the array
+    """
+
     def remove(self, bullets):
         bullets.remove(self)
 
-    # collision method
+    """
+    collision method
+    """
+
     def check_hit(self, ships, bullets):
         # check if we hit a ship and if the ship is not ours
         for aShip in ships:
@@ -35,5 +41,9 @@ class Bullet:
                 aBullet.remove(bullets)
                 self.remove(bullets)
 
+    """
+    update func for bullets
+    """
+    
     def move(self):
         self.pos = self.pos.add(self.vel)

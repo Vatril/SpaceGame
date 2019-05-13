@@ -1,6 +1,6 @@
 from game_logic.Vectors import Vector2
 from game_logic.Bullets import Bullet
-# import game_logic.Game as Game
+from game_logic.Game import Game
 import math
 
 
@@ -73,13 +73,14 @@ class Ship:
         direction = direction.mult(60 / (d * d))
 
         self.vel = self.vel.add(direction)
+        self.vel = self.vel.mult(self.velFactor)
 
     """"
     rotate the ship
     """
 
     def rotate(self, left_right):
-        self.angle += left_right * 0.03
+        self.angle += left_right * 0.005
 
     """
     moves the ship and checks its position
@@ -117,8 +118,7 @@ class Ship:
     # normal shoot function
     def shoot(self):
         if self.ammo_counter:
-            # Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
-            pass
+            Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

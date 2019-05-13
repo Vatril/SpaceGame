@@ -1,5 +1,4 @@
 from game_logic.Ships import Ship
-from game_logic.Bullets import Bullet
 from uuid import uuid4
 from time import time
 

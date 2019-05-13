@@ -101,7 +101,11 @@ def state():
                 "name": ship.name
             } for ship in ships]
         ,
-        "bullets": None
+        "bullets":
+            [{
+                "x": bullet.pos.x,
+                "y": bullet.pos.y
+            } for bullet in bullets]
     })
 
 

@@ -100,17 +100,20 @@ class Ship:
         self.pos = self.pos.add(self.vel)
 
         # if the ship falls into the black hole, reset its position
-        if dist_to_center < 20:
+        if dist_to_center < 20.0:
             self.setup()
 
+        """
         # calculate how slow the ship should move as it moves further to the edge
-        if (dist_to_center > 300) and (dist_to_center < 390):
+        if (dist_to_center > 300.0) and (dist_to_center < 390.0):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
         else:
             self.velFactor = 1.0
+        """
+        print(self.pos.dist(Ship.center))
 
         # if the ship is out of bounds, place it back to spawn
-        if dist_to_center > 600:
+        if self.pos.dist(Ship.center) > 600.0:
             self.setup()
 
     """

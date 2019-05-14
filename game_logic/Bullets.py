@@ -54,17 +54,17 @@ class Bullet:
     calculates the velocity and position
     """
 
-    def update(self):
+    def update(self, bullets):
         # calculate the gravity
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(100 / (d * d))
+        direction = direction.mult(10 / (d * d))
 
         self.vel = self.vel.add(direction)
 
         if self.pos.dist(Bullet.center) > 400:
-            self.remove()
+            self.remove(bullets)
 
     """
     update func for bullets

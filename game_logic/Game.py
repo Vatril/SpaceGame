@@ -21,7 +21,7 @@ class Game:
             aShip.move()
 
         for aBullet in Game.bullets:
-            aBullet.update()
+            aBullet.update(Game.bullets)
             aBullet.move()
 
     @staticmethod

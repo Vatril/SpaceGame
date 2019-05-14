@@ -21,6 +21,24 @@ const startGame = () => {
                 .selectAll("g")
                 .data(res.data.ships)
 
+            const b_groups = d3
+                .select("#bullets")
+                .selectAll("circle")
+
+            b_groups
+                .enter(res.data.bullets)
+                .append("circle")
+                .attr("cx", s => s.x)
+                .attr("cy", s => s.y)
+                .attr("r", "20")
+
+            b_groups
+                .transition(d3.transition()
+                    .ease(d3.easeLinear)
+                    .duration(100))
+                .attr("cx", s => s.x)
+                .attr("cy", s => s.y)
+
             d3
                 .select("#thrust")
                 .datum(res.data.gui.thrust)
@@ -48,8 +66,8 @@ const startGame = () => {
                             .select("#shots")
                             .append("circle")
                             .attr("r", "6")
-                            .attr("cy", 15 + Math.floor(i/4) * 20)
-                            .attr("cx", i * 40 + 610 + (Math.floor(i/4) * -160))
+                            .attr("cy", 15 + Math.floor(i / 4) * 20)
+                            .attr("cx", i * 40 + 610 + (Math.floor(i / 4) * -160))
                     }
                 })
 

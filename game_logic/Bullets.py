@@ -59,13 +59,12 @@ class Bullet:
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(20 / (d * d))
+        direction = direction.mult(100 / (d * d))
 
         self.vel = self.vel.add(direction)
 
         if self.pos.dist(Bullet.center) > 400:
-            self.pos.x = 0
-            self.pos.y = 0
+            self.remove()
 
     """
     update func for bullets

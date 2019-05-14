@@ -11,10 +11,6 @@ class Game:
     last_update = 0
 
     @staticmethod
-    def add_bullet(x, y, ang, id):
-        Game.bullets.append(Bullet(x, y, ang, id))
-
-    @staticmethod
     def update():
         for aShip in Game.ships:
             aShip.update()
@@ -28,7 +24,8 @@ class Game:
     def add(name, color):
         uuid = str(uuid4())
         s = Ship(uuid, name, color)
-        s.set_on_bullet(lambda ship: Game.add_bullet(ship.pos.x, ship.pos.y, ship.angle, ship.ship_id))
+        print(s.pos.x, s.pos.y)
+        s.set_on_bullet(lambda bullet: Game.bullets.append(bullet))
         Game.ships.append(s)
         return uuid
 

@@ -1,4 +1,5 @@
 from game_logic.Vectors import Vector2
+from game_logic.Bullets import Bullet
 import math
 from time import time
 
@@ -103,14 +104,11 @@ class Ship:
         if dist_to_center < 20.0:
             self.setup()
 
-        """
         # calculate how slow the ship should move as it moves further to the edge
         if (dist_to_center > 300.0) and (dist_to_center < 390.0):
             self.velFactor -= (360 - self.pos.dist(Ship.center)) / 10.0
         else:
             self.velFactor = 1.0
-        """
-        print(self.pos.dist(Ship.center))
 
         # if the ship is out of bounds, place it back to spawn
         if self.pos.dist(Ship.center) > 600.0:
@@ -133,7 +131,7 @@ class Ship:
     def shoot(self):
         if self.ammo_counter > 0:
             self.ammo_counter -= 1
-            self.add_bullet(self)
+            self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle, self.ship_id))
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

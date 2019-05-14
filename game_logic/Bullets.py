@@ -14,8 +14,11 @@ class Bullet:
 
     def __init__(self, x, y, angle, id):
         self.pos = Vector2(x, y)
+        """
         self.vel = Vector2(math.cos(angle - math.pi/2) * 6,
                            math.sin(angle - math.pi/2) * 6)
+        """
+        self.vel = Vector2(0.1,0.1)
         self.id = id
         self.bullet_id = Bullet.create_id()
 
@@ -59,11 +62,11 @@ class Bullet:
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(10 / (d * d))
+        direction = direction.mult(100 / (d * d))
 
-        self.vel = self.vel.add(direction)
+        # self.vel = self.vel.add(direction)
 
-        if self.pos.dist(Bullet.center) > 400:
+        if self.pos.dist(Bullet.center) > 400.0:
             self.remove(bullets)
 
     """

@@ -24,11 +24,12 @@ const startGame = () => {
             const b_groups = d3
                 .select("#bullets")
                 .selectAll("circle")
-                .data(res.data.bullets)
+                .data(res.data.bullets, b => b.id)
 
             b_groups
                 .enter()
                 .append("circle")
+                .attr("id", b => `bullet_${b.id}`)
                 .attr("cx", s => s.x)
                 .attr("cy", s => s.y)
                 .attr("r", "5")
@@ -39,6 +40,10 @@ const startGame = () => {
                     .duration(100))
                 .attr("cx", s => s.x)
                 .attr("cy", s => s.y)
+
+            b_groups
+                .exit()
+                .remove()
 
             d3
                 .select("#thrust")

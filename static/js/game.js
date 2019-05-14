@@ -24,9 +24,10 @@ const startGame = () => {
             const b_groups = d3
                 .select("#bullets")
                 .selectAll("circle")
+                .data(res.data.bullets)
 
             b_groups
-                .enter(res.data.bullets)
+                .enter()
                 .append("circle")
                 .attr("cx", s => s.x)
                 .attr("cy", s => s.y)

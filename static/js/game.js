@@ -79,6 +79,7 @@ const startGame = () => {
 
             g
                 .append("path")
+                .attr("stroke", "none")
                 .attr("fill", ship => ship.color)
                 .attr("d", "M 20 0 L 40 40 L 0 40")
 

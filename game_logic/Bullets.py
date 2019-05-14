@@ -63,6 +63,10 @@ class Bullet:
 
         self.vel = self.vel.add(direction)
 
+        if self.pos.dist(Bullet.center) > 400:
+            self.pos.x = 0
+            self.pos.y = 0
+
     """
     update func for bullets
     """

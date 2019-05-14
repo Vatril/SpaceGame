@@ -1,4 +1,5 @@
 from game_logic.Ships import Ship
+from game_logic.Bullets import Bullet
 from uuid import uuid4
 from time import time
 
@@ -8,6 +9,10 @@ class Game:
     bullets = []
 
     last_update = 0
+
+    @staticmethod
+    def add_bullet(x, y, ang, id):
+        Game.bullets.append(Bullet(x, y, ang, id))
 
     @staticmethod
     def update():
@@ -22,7 +27,9 @@ class Game:
     @staticmethod
     def add(name, color):
         uuid = str(uuid4())
-        Game.ships.append(Ship(uuid, name, color))
+        s = Ship(uuid, name, color)
+        s.set_on_bullet(lambda ship: Game.add_bullet(ship.pos.x, ship.pos.y, ship.angle, ship.ship_id))
+        Game.ships.append(s)
         return uuid
 
     def get(self):

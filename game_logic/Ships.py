@@ -1,7 +1,6 @@
 from game_logic.Vectors import Vector2
-from game_logic.Bullets import Bullet
-# import game_logic.Game as Game
 import math
+from time import time
 
 
 class Ship:
@@ -11,6 +10,9 @@ class Ship:
     D_KEY = 1 << 2
     SPACE_KEY = 1 << 3
     V_KEY = 1 << 4
+
+    def set_on_bullet(self, shoot_method):
+        self.add_bullet = shoot_method
 
     """
     constructor for ship object
@@ -28,10 +30,12 @@ class Ship:
         self.super_meter = 0
         self.thrust_meter = 150
         self.ammo_counter = 8
+        self.last_pressed = 0
         self.ship_id = ship_id
         self.score = 0
 
         self.key_presses = 0
+        self.add_bullet = lambda x: None
 
     """
     reset func for ship attributes
@@ -44,6 +48,7 @@ class Ship:
         self.super_meter = 0
         # self.thrust_meter = 150
         self.ammo_counter = 4
+        self.last_pressed = 0
         self.score = 0
 
     """
@@ -62,7 +67,11 @@ class Ship:
         if self.key_presses & Ship.D_KEY:
             self.rotate(1)
         if self.key_presses & Ship.SPACE_KEY:
-            self.shoot()
+            if self.last_pressed == 0:
+                self.last_pressed = time()
+            delta = (time() + 200) - self.last_pressed
+            if delta > 0:
+                self.shoot()
         if self.key_presses & Ship.V_KEY:
             self.super_shoot()
 
@@ -119,9 +128,9 @@ class Ship:
 
     # normal shoot function
     def shoot(self):
-        if self.ammo_counter:
+        if self.ammo_counter > 0:
             self.ammo_counter -= 1
-            # Game.bullets.add(Bullet(self.x, self.y, self.angle, self.ship_id))
+            self.add_bullet(self)
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

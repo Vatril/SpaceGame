@@ -31,7 +31,7 @@ const startGame = () => {
                 .append("circle")
                 .attr("cx", s => s.x)
                 .attr("cy", s => s.y)
-                .attr("r", "20")
+                .attr("r", "5")
 
             b_groups
                 .transition(d3.transition()

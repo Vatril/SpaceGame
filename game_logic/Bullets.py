@@ -5,12 +5,19 @@ import math
 class Bullet:
 
     center = Vector2(400, 400)
+    current_id = 0
+
+    @staticmethod
+    def create_id():
+        Bullet.current_id += 1
+        return Bullet.current_id
 
     def __init__(self, x, y, angle, id):
         self.pos = Vector2(x, y)
         self.vel = Vector2(math.cos(angle - math.pi/2) * 6,
                            math.sin(angle - math.pi/2) * 6)
         self.id = id
+        self.bullet_id = Bullet.create_id()
 
     """
     remove the bullet from the array
@@ -52,9 +59,13 @@ class Bullet:
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(100 / (d * d))
+        direction = direction.mult(20 / (d * d))
 
         self.vel = self.vel.add(direction)
+
+        if self.pos.dist(Bullet.center) > 400:
+            self.pos.x = 0
+            self.pos.y = 0
 
     """
     update func for bullets

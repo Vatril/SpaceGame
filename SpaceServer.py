@@ -106,7 +106,7 @@ def state():
             [{
                 "x": bullet.pos.x,
                 "y": bullet.pos.y,
-                "id": bullet.id
+                "id": bullet.bullet_id
             } for bullet in bullets]
     })
 

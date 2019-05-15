@@ -59,7 +59,7 @@ class Ship:
 
     def update(self):
         delta = time() - (self.last_updated + 2.0)
-        if delta > 0:
+        if delta > 0 and self.ammo_counter < 8:
             self.ammo_counter += 1
             self.last_updated = time()
 

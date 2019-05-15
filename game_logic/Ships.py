@@ -31,7 +31,7 @@ class Ship:
         self.super_meter = 0
         self.thrust_meter = 150
         self.ammo_counter = 8
-        self.last_pressed = 0
+        self.last_pressed = time()
         self.ship_id = ship_id
         self.score = 0
 
@@ -57,6 +57,7 @@ class Ship:
     """
 
     def update(self):
+
         if self.thrust_meter < 150 and not self.thrust_pressed:
             self.thrust_meter += 0.2
 
@@ -68,11 +69,7 @@ class Ship:
         if self.key_presses & Ship.D_KEY:
             self.rotate(1)
         if self.key_presses & Ship.SPACE_KEY:
-            if self.last_pressed == 0:
-                self.last_pressed = time()
-            delta = (time() + 200) - self.last_pressed
-            if delta > 0:
-                self.shoot()
+            self.shoot()
         if self.key_presses & Ship.V_KEY:
             self.super_shoot()
 
@@ -129,9 +126,11 @@ class Ship:
 
     # normal shoot function
     def shoot(self):
-        if self.ammo_counter > 0:
+        delta = time() - (self.last_pressed + 0.5)
+        if self.ammo_counter > 0 and delta > 0:
             self.ammo_counter -= 1
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle, self.ship_id))
+            self.last_pressed = time()
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):

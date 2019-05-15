@@ -18,7 +18,7 @@ class Bullet:
         self.vel = Vector2(math.cos(angle - math.pi/2) * 6,
                            math.sin(angle - math.pi/2) * 6)
         """
-        self.vel = Vector2(0.1,0.1)
+        self.vel = Vector2(0, 0)
         self.id = id
         self.bullet_id = Bullet.create_id()
 

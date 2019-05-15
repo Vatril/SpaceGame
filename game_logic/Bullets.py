@@ -1,23 +1,17 @@
 from game_logic.Vectors import Vector2
 import math
-
+from uuid import uuid4
 
 class Bullet:
 
     center = Vector2(400, 400)
-    current_id = 0
 
-    @staticmethod
-    def create_id():
-        Bullet.current_id += 1
-        return Bullet.current_id
-
-    def __init__(self, x, y, angle, id):
+    def __init__(self, x, y, angle, s_id):
         self.pos = Vector2(x, y)
         self.vel = Vector2(math.cos(angle - math.pi/2) * 2.0,
                            math.sin(angle - math.pi/2) * 2.0)
-        self.id = id
-        self.bullet_id = Bullet.create_id()
+        self.id = s_id
+        self.bullet_id = str(uuid4())
 
     """
     remove the bullet from the array

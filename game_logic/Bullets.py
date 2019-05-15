@@ -3,16 +3,16 @@ import math
 from uuid import uuid4
 from time import time
 
-class Bullet:
 
+class Bullet:
     center = Vector2(400, 400)
 
-    def __init__(self, x, y, angle, s_id):
+    def __init__(self, x, y, angle, s_obj):
+        self.parent_ship = s_obj
         self.created = time()
         self.pos = Vector2(x, y)
-        self.vel = Vector2(math.cos(angle - math.pi/2) * 2.0,
-                           math.sin(angle - math.pi/2) * 2.0)
-        self.id = s_id
+        self.vel = Vector2(math.cos(angle - math.pi / 2) * 2.0,
+                           math.sin(angle - math.pi / 2) * 2.0)
         self.bullet_id = str(uuid4())
 
     """
@@ -29,20 +29,18 @@ class Bullet:
     def check_hit(self, ships, bullets):
         # check if we hit a ship and if the ship is not ours
         for aShip in ships:
-            if (self.pos.dist(aShip.pos) < 20) and (self.id != aShip.id):
+            if (self.pos.dist(aShip.pos) < 20) and (self.parent_ship != aShip):
+                print("hit")
                 self.remove(bullets)
 
-                # look for the ship that shot the bullet
-                for bShip in ships:
-                    if self.id == bShip.id:
-                        bShip.score += 1
+                self.parent_ship.score += 1
 
-                if aShip.superMeter < 4:
-                    aShip.superMeter += 1
+                if aShip.super_meter < 4:
+                    aShip.super_meter += 1
 
         # check if we hit a bullet and if it is not ours
         for aBullet in bullets:
-            if (self.pos.dist(aBullet.pos) < 20) and (self.id != aBullet.id):
+            if (self.pos.dist(aBullet.pos) < 20) and (self.parent_ship != aBullet.parent_ship):
                 aBullet.remove(bullets)
                 self.remove(bullets)
 
@@ -50,7 +48,7 @@ class Bullet:
     calculates the velocity and position
     """
 
-    def update(self, bullets):
+    def update(self, ships, bullets):
         delta = time() - (self.created + 4)
         if delta > 0:
             self.remove(bullets)
@@ -65,6 +63,8 @@ class Bullet:
 
         if self.pos.dist(Bullet.center) > 400.0:
             self.remove(bullets)
+
+        self.check_hit(ships, bullets)
 
     """
     update func for bullets

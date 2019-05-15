@@ -1,12 +1,14 @@
 from game_logic.Vectors import Vector2
 import math
 from uuid import uuid4
+from time import time
 
 class Bullet:
 
     center = Vector2(400, 400)
 
     def __init__(self, x, y, angle, s_id):
+        self.created = time()
         self.pos = Vector2(x, y)
         self.vel = Vector2(math.cos(angle - math.pi/2) * 2.0,
                            math.sin(angle - math.pi/2) * 2.0)
@@ -49,6 +51,10 @@ class Bullet:
     """
 
     def update(self, bullets):
+        delta = time() - (self.created + 4)
+        if delta > 0:
+            self.remove(bullets)
+            return
         # calculate the gravity
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()

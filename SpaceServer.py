@@ -110,6 +110,17 @@ def state():
             } for bullet in bullets]
     })
 
+@app.route('/scoreboard')
+def score_state():
+    ships, _ = game.get()
+    return jsonify(
+        [{
+            "name": ship.name,
+            "color": ship.color,
+            "score": ship.score
+        }for ship in ships.sort(key="score", reverse=True)]
+    )
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=3000)

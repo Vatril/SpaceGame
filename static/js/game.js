@@ -30,6 +30,7 @@ const startGame = () => {
 
             lis
                 .text(player => `${player.score} | ${player.name}`)
+                .style("color", player => player.color)
 
             lis.exit().remove()
         })

@@ -23,7 +23,7 @@ class Ship:
         self.name = name
         self.color = color
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(0.8, 0.25)
+        self.vel = Vector2(1.0, 0.25)
         self.velFactor = 1.0
         self.angle = 0.0
 
@@ -45,7 +45,7 @@ class Ship:
 
     def setup(self):
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(0.8, 0.25)
+        self.vel = Vector2(1.0, 0.25)
         self.velFactor = 1.0
         self.super_meter = 0
         # self.thrust_meter = 150
@@ -82,10 +82,12 @@ class Ship:
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Ship.center)
-        direction = direction.mult(150 / (d * d))
+        direction = direction.mult(600 / (d * d))
 
         self.vel = self.vel.add(direction)
+        """
         self.vel = self.vel.mult(self.velFactor)
+        """
 
     """"
     rotate the ship
@@ -113,7 +115,7 @@ class Ship:
             self.velFactor = 1.0
 
         # if the ship is out of bounds, place it back to spawn
-        if self.pos.dist(Ship.center) > 600.0:
+        if self.pos.dist(Ship.center) > 400.0:
             self.setup()
 
     """

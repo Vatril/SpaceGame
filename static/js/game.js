@@ -73,7 +73,7 @@ const startGame = () => {
                             .append("circle")
                             .attr("r", "6")
                             .attr("cy", 15 + Math.floor(i / 4) * 20)
-                            .attr("cx", i * 40 + 610 + (Math.floor(i / 4) * -160))
+                            .attr("cx", i * 40 + 710 + (Math.floor(i / 4) * -160))
                     }
                 })
 

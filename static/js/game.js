@@ -15,6 +15,27 @@ const startGame = () => {
         })
 
     setInterval(() => {
+        axios.get("/scoreboard").then(res => {
+            console.log(res.data)
+            const lis = d3
+                .select("#scoreboard")
+                .selectAll("li")
+                .data(res.data)
+
+            lis
+                .enter()
+                .append("li")
+                .style("color", player => player.color)
+                .text(player => `${player.score} | ${player.name}`)
+
+            lis
+                .text(player => `${player.score} | ${player.name}`)
+
+            lis.exit().remove()
+        })
+    }, 1000)
+
+    setInterval(() => {
         axios.get("/state").then(res => {
             const groups = d3
                 .select("#ships")

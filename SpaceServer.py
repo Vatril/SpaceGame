@@ -114,7 +114,7 @@ def state():
 @app.route('/scoreboard')
 def score_state():
     ships, _ = game.get()
-    ships.sort(key=lambda x: x.score, reverse=True)
+    ships.sort(key=lambda s: s.score, reverse=True)
     return jsonify(
         [{
             "name": ship.name,

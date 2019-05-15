@@ -4,32 +4,35 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/game.css') }}"/>
 </head>
 
 <body onload="startGame()">
-    <svg id="svg" width="800" height="800" stroke="white">
-        <rect width="100%" height="100%" fill="#101010" />
+    <svg id="svg" viewBox="0 0 900 800" stroke="white">
+        <circle r="390" cx="400" cy="400" fill="#101010" />
         <g id="bullets" fill="yellow" />
         <g id="ships" />
         <g id="metersbg" fill="gray">
-            <circle cx="550" cy="50" r="30" />
-            <rect x="595" y="50" height="30" width="160" />
+            <circle cx="650" cy="50" r="30" />
+            <rect x="695" y="50" height="30" width="160" />
             <g>
-                <circle r="8" cy="15" cx="610"></circle>
-                <circle r="8" cy="15" cx="650"></circle>
-                <circle r="8" cy="15" cx="690"></circle>
-                <circle r="8" cy="15" cx="730"></circle>
-                <circle r="8" cy="35" cx="610"></circle>
-                <circle r="8" cy="35" cx="650"></circle>
-                <circle r="8" cy="35" cx="690"></circle>
-                <circle r="8" cy="35" cx="730"></circle>
+                <circle r="8" cy="15" cx="710"></circle>
+                <circle r="8" cy="15" cx="750"></circle>
+                <circle r="8" cy="15" cx="790"></circle>
+                <circle r="8" cy="15" cx="830"></circle>
+                <circle r="8" cy="35" cx="710"></circle>
+                <circle r="8" cy="35" cx="750"></circle>
+                <circle r="8" cy="35" cx="790"></circle>
+                <circle r="8" cy="35" cx="830"></circle>
             </g>
         </g>
         <g id="meters" fill="yellow">
-            <circle cx="550" cy="50" id="supermeter" />
-            <rect id="thrust" x="600" y="55" height="20" />
+            <circle cx="650" cy="50" id="supermeter" />
+            <rect id="thrust" x="700" y="55" height="20" />
             <g id="shots" />
         </g>
+        <circle cx="400" cy="400" r="5" fill="white"/>
     </svg>
 </body>
 

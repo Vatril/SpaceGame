@@ -142,9 +142,9 @@ class Ship:
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):
-        delta = time() - (self.last_super + 0.5)
-        if self.super_meter == 4 and delta > 0:
+        if self.super_meter == 4:
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.3, self.ship_id))
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.1, self.ship_id))
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle + 0.1, self.ship_id))
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle + 0.3, self.ship_id))
+        self.super_meter = 0

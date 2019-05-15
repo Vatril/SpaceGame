@@ -59,7 +59,7 @@ class Bullet:
         direction = Vector2(Bullet.center.x - self.pos.x, Bullet.center.y - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Bullet.center)
-        direction = direction.mult(100 / (d * d))
+        direction = direction.mult(1200 / (d * d))
 
         self.vel = self.vel.add(direction)
 

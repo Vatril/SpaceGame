@@ -33,6 +33,7 @@ class Ship:
         self.ammo_counter = 8
         self.last_pressed = time()
         self.last_updated = time()
+        self.last_super = time()
         self.ship_id = ship_id
         self.score = 0
 
@@ -141,7 +142,8 @@ class Ship:
 
     # super shoot function, activates after 4 hits
     def super_shoot(self):
-        if self.super_meter == 4:
+        delta = time() - (self.last_super + 0.5)
+        if self.super_meter == 4 and delta > 0:
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.3, self.ship_id))
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.1, self.ship_id))
             self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle + 0.1, self.ship_id))

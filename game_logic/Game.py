@@ -32,9 +32,9 @@ class Game:
     def get(self):
         if Game.last_update == 0:
             Game.last_update = time()
-        delta = (time() + 100) - Game.last_update
+        delta = (time() + 0.1) - Game.last_update
         if delta > 0:
-            for i in range(0, int(delta)):
+            for i in range(0, int(delta*100)):
                 self.update()
             Game.last_update = time()
         return Game.ships, Game.bullets

@@ -23,15 +23,16 @@ class Ship:
         self.name = name
         self.color = color
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(0.5, 0.25)
+        self.vel = Vector2(0.8, 0.25)
         self.velFactor = 1.0
         self.angle = 0.0
 
         self.thrust_pressed = False
-        self.super_meter = 0
+        self.super_meter = 4
         self.thrust_meter = 150
         self.ammo_counter = 8
         self.last_pressed = time()
+        self.last_updated = time()
         self.ship_id = ship_id
         self.score = 0
 
@@ -44,7 +45,7 @@ class Ship:
 
     def setup(self):
         self.pos = Vector2(250.0, 200.0)
-        self.vel = Vector2(0.5, 0.25)
+        self.vel = Vector2(0.8, 0.25)
         self.velFactor = 1.0
         self.super_meter = 0
         # self.thrust_meter = 150
@@ -57,6 +58,10 @@ class Ship:
     """
 
     def update(self):
+        delta = time() - (self.last_updated + 2.0)
+        if delta > 0:
+            self.ammo_counter += 1
+            self.last_updated = time()
 
         if self.thrust_meter < 150 and not self.thrust_pressed:
             self.thrust_meter += 0.2
@@ -77,7 +82,7 @@ class Ship:
         direction = Vector2(800 / 2 - self.pos.x, 800 / 2 - self.pos.y)
         direction = direction.normalize()
         d = self.pos.dist(Ship.center)
-        direction = direction.mult(60 / (d * d))
+        direction = direction.mult(150 / (d * d))
 
         self.vel = self.vel.add(direction)
         self.vel = self.vel.mult(self.velFactor)
@@ -135,4 +140,7 @@ class Ship:
     # super shoot function, activates after 4 hits
     def super_shoot(self):
         if self.super_meter == 4:
-            pass
+            self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.3, self.ship_id))
+            self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle - 0.1, self.ship_id))
+            self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle + 0.1, self.ship_id))
+            self.add_bullet(Bullet(self.pos.x, self.pos.y, self.angle + 0.3, self.ship_id))

@@ -4,11 +4,12 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/game.css') }}"/>
 </head>
 
 <body onload="startGame()">
-    <svg id="svg" width="900" height="800" stroke="white">
-        <circle r="400" cx="400" cy="400" fill="#101010" />
+    <svg id="svg" viewBox="0 0 900 800" stroke="white">
+        <circle r="390" cx="400" cy="400" fill="#101010" />
         <g id="bullets" fill="yellow" />
         <g id="ships" />
         <g id="metersbg" fill="gray">

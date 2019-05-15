@@ -87,7 +87,7 @@ class Ship:
     """
 
     def rotate(self, left_right):
-        self.angle += left_right * 0.005
+        self.angle += left_right * 0.02
 
     """
     moves the ship and checks its position

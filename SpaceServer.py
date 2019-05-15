@@ -110,6 +110,7 @@ def state():
             } for bullet in bullets]
     })
 
+
 @app.route('/scoreboard')
 def score_state():
     ships, _ = game.get()

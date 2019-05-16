@@ -101,12 +101,16 @@ const startGame = () => {
 
             groups
                 .exit()
+                .transition(d3.transition()
+                    .duration(200))
+                .attr("transform", "translate(400, 400) scale(0.0001)")
                 .remove()
 
-            const g = groups.enter()
-                .append("g")
+            const g = groups
+                .enter()
+                .append("g")   
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})
-                 rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
+                 rotate(${(ship.angle / (2 * Math.PI)) * 360}) scale(1)`)
 
             g
                 .append("path")

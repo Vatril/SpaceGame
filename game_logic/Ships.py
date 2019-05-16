@@ -52,7 +52,6 @@ class Ship:
         # self.thrust_meter = 150
         self.ammo_counter = 4
         self.last_pressed = 0
-        self.score = 0
 
     """
     update the ship's position as well as the keystrokes

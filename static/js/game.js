@@ -100,8 +100,8 @@ const startGame = () => {
 
 
             groups
-            .exit()
-            .remove()
+                .exit()
+                .remove()
 
             const g = groups.enter()
                 .append("g")

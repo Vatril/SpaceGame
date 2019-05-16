@@ -16,7 +16,6 @@ const startGame = () => {
 
     setInterval(() => {
         axios.get("/scoreboard").then(res => {
-            console.log(res.data)
             const lis = d3
                 .select("#scoreboard")
                 .selectAll("li")
@@ -108,11 +107,12 @@ const startGame = () => {
                 .append("path")
                 .attr("stroke", "none")
                 .attr("fill", ship => ship.color)
-                .attr("d", "M 20 0 L 40 40 L 0 40")
+                .attr("d", "M 20 -20 L 40 20 L 0 20")
 
             g
                 .append("text")
                 .attr("text-anchor", "middle")
+                .attr("transform", "translate(20, -30)")
                 .text(ship => ship.name)
 
             const tgroup = groups

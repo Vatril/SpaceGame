@@ -24,7 +24,6 @@ class Game:
     def add(name, color):
         uuid = str(uuid4())
         s = Ship(uuid, name, color)
-        print(s.pos.x, s.pos.y)
         s.set_on_bullet(lambda bullet: Game.bullets.append(bullet))
         Game.ships.append(s)
         return uuid

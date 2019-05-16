@@ -114,12 +114,22 @@ const startGame = () => {
                 .attr("text-anchor", "middle")
                 .text(ship => ship.name)
 
-            groups
+            const tgroup = groups
                 .transition(d3.transition()
                     .ease(d3.easeLinear)
                     .duration(100))
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})
                  rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
+
+            tgroup
+                .select("path")
+                .attr("fill", ship => ship.color)
+
+            tgroup
+                .select("text")
+                .text(ship => ship.name)
+
+
 
         })
     }, 100)

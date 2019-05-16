@@ -2,3 +2,11 @@ svg{
     height: 100vh;
     width: 100vh;
 }
+
+ul{
+    margin: 0;
+    padding: 3vh;
+    list-style-type: none;
+    background-color: aliceblue;
+    border-radius: 10px;
+}

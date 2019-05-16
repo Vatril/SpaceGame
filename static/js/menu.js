@@ -12,5 +12,5 @@ const setup = () => {
     d3
     .select("#color")
     .attr("value", `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`)
-    // TODO Fix formating when below 0x10
+    // TODO Fix formatting when below 0x10
 }

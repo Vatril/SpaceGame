@@ -68,7 +68,7 @@ def login():
     session.clear()
     session['key_presses'] = 0
     session['user_id'] = game.add(request.form["name"], request.form["color"])
-    print("client \"" + request.environ['REMOTE_ADDR'] + "\" connected with name \"" + request.form["name"] + "\"")
+    print("client \"" + session['user_id'] + "\" connected with name \"" + request.form["name"] + "\"")
     return redirect("/game")
 
 

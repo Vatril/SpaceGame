@@ -1,5 +1,5 @@
 let key = 0
-
+const FRAMELENGTH = 100
 
 const startGame = () => {
 
@@ -58,7 +58,7 @@ const startGame = () => {
             b_groups
                 .transition(d3.transition()
                     .ease(d3.easeLinear)
-                    .duration(100))
+                    .duration(FRAMELENGTH))
                 .attr("cx", s => s.x)
                 .attr("cy", s => s.y)
 
@@ -71,7 +71,7 @@ const startGame = () => {
                 .datum(res.data.gui.thrust)
                 .transition(d3.transition()
                     .ease(d3.easeLinear)
-                    .duration(100))
+                    .duration(FRAMELENGTH))
                 .attr("width", thrust => thrust)
 
             d3
@@ -98,6 +98,11 @@ const startGame = () => {
                     }
                 })
 
+
+            groups
+            .exit()
+            .remove()
+
             const g = groups.enter()
                 .append("g")
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})
@@ -118,7 +123,7 @@ const startGame = () => {
             const tgroup = groups
                 .transition(d3.transition()
                     .ease(d3.easeLinear)
-                    .duration(100))
+                    .duration(FRAMELENGTH))
                 .attr("transform", ship => `translate(${ship.x}, ${ship.y})
                  rotate(${(ship.angle / (2 * Math.PI)) * 360})`)
 
@@ -133,7 +138,7 @@ const startGame = () => {
 
 
         })
-    }, 100)
+    }, FRAMELENGTH)
 }
 
 const keyToShift = key => {

@@ -43,6 +43,7 @@ def latest(data):
         "space": True if (data & SPACE_KEY) else False,
         "v": True if (data & V_KEY) else False
     }
+    """
     if ship["w"]:
         print("W pressed")
     if ship["a"]:
@@ -53,6 +54,7 @@ def latest(data):
         print("SPACE pressed")
     if ship["v"]:
         print("V pressed")
+    """
 
     for aShip in game.ships:
         if aShip.ship_id == session['user_id']:
@@ -66,6 +68,7 @@ def login():
     session.clear()
     session['key_presses'] = 0
     session['user_id'] = game.add(request.form["name"], request.form["color"])
+    print("client \"" + request.environ['REMOTE_ADDR'] + "\" connected with name \"" + request.form["name"] + "\"")
     return redirect("/game")
 
 

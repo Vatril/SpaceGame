@@ -94,7 +94,7 @@ def state():
                 "angle": ship.angle,
                 "color": ship.color,
                 "name": ship.name
-            } for ship in ships]
+            } for ship in list(filter(lambda s: not s.destroyed, ships))]
         ,
         "bullets":
             [{

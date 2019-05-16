@@ -21,6 +21,7 @@ class Ship:
 
     def __init__(self, ship_id, name, color):
         self.name = name
+        self.ship_id = ship_id
         self.color = color
         self.pos = Vector2(250.0, 200.0)
         self.vel = Vector2(1.0, 0.25)
@@ -28,15 +29,17 @@ class Ship:
         self.angle = 0.0
 
         self.thrust_pressed = False
+        self.destroyed = False
         self.super_meter = 4
         self.thrust_meter = 150
         self.ammo_counter = 8
+        self.score = 0
+
+        self.destroyed_count = 1
         self.last_pressed = time()
         self.last_updated = time()
         self.last_super = time()
         self.last_requested = time()
-        self.ship_id = ship_id
-        self.score = 0
 
         self.key_presses = 0
         self.add_bullet = lambda x: None
@@ -54,11 +57,17 @@ class Ship:
         self.ammo_counter = 4
         self.last_pressed = 0
 
+    def remove(self, ships):
+        ships.remove(self)
+
     """
     update the ship's position as well as the keystrokes
     """
 
     def update(self):
+        if self.destroyed:
+            self.destroyed_count += 1
+
         delta = time() - (self.last_updated + 4.0)
         if delta > 0 and self.ammo_counter < 8:
             self.ammo_counter += 1
@@ -107,6 +116,7 @@ class Ship:
 
         # if the ship falls into the black hole, reset its position
         if dist_to_center < 20.0:
+            self.destroyed = True
             self.setup()
 
         # calculate how slow the ship should move as it moves further to the edge
@@ -117,6 +127,7 @@ class Ship:
 
         # if the ship is out of bounds, place it back to spawn
         if self.pos.dist(Ship.center) > 400.0:
+            self.destroyed = True
             self.setup()
 
     """

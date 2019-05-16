@@ -36,8 +36,13 @@ class Game:
             if delta > 0:
                 Game.remove(aShip)
             else:
-                aShip.update()
-                aShip.move()
+                if aShip.destroyed_count > 700:
+                    print("destroyed")
+                    aShip.destroyed = False
+                    aShip.destroyed_count = 0
+                else:
+                    aShip.update()
+                    aShip.move()
 
         for aBullet in Game.bullets:
             aBullet.update(Game.ships, Game.bullets)

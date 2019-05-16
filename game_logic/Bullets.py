@@ -38,11 +38,16 @@ class Bullet:
                 if aShip.super_meter < 4:
                     aShip.super_meter += 1
 
+                aShip.destroyed = True
+                aShip.time_destroyed = time()
+
+        """
         # check if we hit a bullet and if it is not ours
         for aBullet in bullets:
             if (self.pos.dist(aBullet.pos) < 20) and (self.parent_ship != aBullet.parent_ship):
-                remove(bullets)
                 self.remove(bullets)
+                self.remove(bullets)
+        """
 
     """
     calculates the velocity and position

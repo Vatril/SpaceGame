@@ -34,6 +34,7 @@ class Ship:
         self.last_pressed = time()
         self.last_updated = time()
         self.last_super = time()
+        self.last_requested = time()
         self.ship_id = ship_id
         self.score = 0
 

@@ -41,7 +41,7 @@ class Bullet:
         # check if we hit a bullet and if it is not ours
         for aBullet in bullets:
             if (self.pos.dist(aBullet.pos) < 20) and (self.parent_ship != aBullet.parent_ship):
-                aBullet.remove(bullets)
+                remove(bullets)
                 self.remove(bullets)
 
     """

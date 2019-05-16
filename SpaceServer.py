@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, session, render_template, redirect
 from game_logic.Game import Game
+from time import time
 import secrets
 import logging
 
@@ -43,18 +44,6 @@ def latest(data):
         "space": True if (data & SPACE_KEY) else False,
         "v": True if (data & V_KEY) else False
     }
-    """
-    if ship["w"]:
-        print("W pressed")
-    if ship["a"]:
-        print("A pressed")
-    if ship["d"]:
-        print("D pressed")
-    if ship["space"]:
-        print("SPACE pressed")
-    if ship["v"]:
-        print("V pressed")
-    """
 
     for aShip in game.ships:
         if aShip.ship_id == session['user_id']:
@@ -68,7 +57,7 @@ def login():
     session.clear()
     session['key_presses'] = 0
     session['user_id'] = game.add(request.form["name"], request.form["color"])
-    print("client \"" + request.environ['REMOTE_ADDR'] + "\" connected with name \"" + request.form["name"] + "\"")
+    print("client \"" + session['user_id'] + "\" connected with name \"" + request.form["name"] + "\"")
     return redirect("/game")
 
 
@@ -88,6 +77,8 @@ def state():
 
     if this_ship is None:
         return jsonify({"error": "no ship"})
+
+    this_ship.last_requested = time()
 
     return jsonify({
         "gui":

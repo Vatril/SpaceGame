@@ -16,7 +16,6 @@ const startGame = () => {
 
     setInterval(() => {
         axios.get("/scoreboard").then(res => {
-            console.log(res.data)
             const lis = d3
                 .select("#scoreboard")
                 .selectAll("li")
